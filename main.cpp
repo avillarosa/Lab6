@@ -78,9 +78,7 @@ class Book{
 		}
 
 		void setSurfaceArea(int length, int width){
-			bookDim.length = length;
-			bookDim.width  = width;
-			surfaceArea = bookDim.length*bookDim.width;
+			surfaceArea = length * width;
 		}
 };
 
@@ -128,9 +126,7 @@ class TissueBox{
 		}
 
 		void setSurfaceArea(int length, int width){
-			tissueDim.length = length;
-			tissueDim.width  = width;
-			surfaceArea = tissueDim.length *  tissueDim.width;
+			surfaceArea = length * width;
 		}
 };
 
@@ -182,9 +178,7 @@ class Lamp{
 		}
 
 		void setSurfaceArea(int length, int width){
-			lampDim.length = length;
-			lampDim.width  = width;
-			surfaceArea = lampDim.length * lampDim.width;
+			surfaceArea = length * width;
 		}
 };
 
@@ -287,9 +281,7 @@ class Table{
 		}
 
 		void setSurfaceArea(int length, int width){
-			tableDim.length = length;
-			tableDim.width  = width;
-			surfaceArea = tableDim.length * tableDim.width;
+			surfaceArea = length * width;
 		}
 
 		void addBook(Book book){
