@@ -5,10 +5,13 @@
 
 using namespace std;
 
+// List of available colors
 enum Color {BLACK, BROWN, WHITE, GREEN, RED};
 
+// List of available material
 enum Material {WOOD, METAL, CERAMIC};
 
+// Struct to get the dimensions of each object. Length and width
 struct Dimension{
 	int length;
 	int width;
@@ -24,6 +27,7 @@ class Book{
 		int surfaceArea;
 
 	public:
+		// Getters
 		bool getStatus(){
 			return status;
 		}
@@ -48,6 +52,7 @@ class Book{
 			return surfaceArea;
 		}
 
+		// Setters
 		void setStatus(string s){
 			if (s == "open"){
 				status = true;
@@ -74,7 +79,9 @@ class Book{
 		}
 
 		void setSurfaceArea(int length, int width){
-			surfaceArea = length*width;
+			bookDim.length = length;
+			bookDim.width  = width;
+			surfaceArea = bookDim.length*bookDim.width;
 		}
 };
 
@@ -87,6 +94,7 @@ class TissueBox{
 		int surfaceArea;
 
 	public:
+		// Getters
 		int getMaxTissues(){
 			return maxTissues;
 		}
@@ -107,6 +115,7 @@ class TissueBox{
 			return surfaceArea;
 		}
 
+		// Setters
 		void setMaxTissues(int maxT){
 			maxTissues = maxT;
 		}
@@ -120,7 +129,9 @@ class TissueBox{
 		}
 
 		void setSurfaceArea(int length, int width){
-			surfaceArea = length * width;
+			tissueDim.length = length;
+			tissueDim.width  = width;
+			surfaceArea = tissueDim.length *  tissueDim.width;
 		}
 };
 
@@ -133,6 +144,7 @@ class Lamp{
 		int surfaceArea;
 
 	public:
+		// Getters
 		Color getColor(){
 			return color;
 		}
@@ -153,6 +165,7 @@ class Lamp{
 			return surfaceArea;
 		}
 
+		// Setters
 		void setColor(Color c){
 			color = c;
 		}
@@ -170,7 +183,9 @@ class Lamp{
 		}
 
 		void setSurfaceArea(int length, int width){
-			surfaceArea = length * width;
+			lampDim.length = length;
+			lampDim.width  = width;
+			surfaceArea = lampDim.length * lampDim.width;
 		}
 };
 
@@ -188,6 +203,7 @@ class Table{
 
 
 	public: 
+		// Getters
 		Color getColor(){
 			return color;
 		}
@@ -208,6 +224,7 @@ class Table{
 			return tableDim.width;
 		}
 
+		// Setters
 		int getSurfaceArea(){
 			return surfaceArea;
 		}
@@ -271,7 +288,9 @@ class Table{
 		}
 
 		void setSurfaceArea(int length, int width){
-			surfaceArea = length * width;
+			tableDim.length = length;
+			tableDim.width  = width;
+			surfaceArea = tableDim.length * tableDim.width;
 		}
 
 		void addBook(Book book){
