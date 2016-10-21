@@ -355,247 +355,98 @@ class Table{
 
 };
 
-int main(){
-
-	string response;
-	cout << "Are you interested in buying a table today? (yes/no) ";
-	cin >> response;
-	
-	while (response != "yes" && response != "no"){
-		cout << "Invalid response. Please respond with \"yes\" or \"no.\" ";
-		cin >> response;
-	}
-
-	if (response == "yes"){
-
-		Table table;
-
-		string tableMaterial;
-		string tableColor;
-		int numberOfLegs;
-		int tableLength;
-		int tableWidth;
-		int tableSurfaceArea;
-
-		cout << "Please select the material you would like your table "
-			 << "to be made out of: (wood / metal / ceramic) ";
-		cin >> tableMaterial;
-		while (tableMaterial != "wood" && tableMaterial != "metal" && tableMaterial != "ceramic"){
-			cout << "Invalid response. Please respond with \"wood,\"  \"metal,\" or \"ceramic.\" ";
-			cin >> tableMaterial;
-		}
-
-		table.setMaterial(tableMaterial);
-
-		cout << "Please select the number of legs you would like "
-			 << "your table to have(1, 3, or 4): ";
-		cin >> numberOfLegs;
-
-		while (numberOfLegs != 1 && numberOfLegs != 3 && numberOfLegs != 4){
-			cout << "Invalid response. Please respond with \"1,\"  \"3,\" or \"4.\" ";
-			cin >> numberOfLegs;
-		}
-
-		table.setNumberOfLegs(numberOfLegs);
-
-		cout << "Please select the color of table you would like: "
-			 << "(black, brown, white, green, red) ";
-		cin >> tableColor;
-		while (tableColor != "black" && tableColor != "brown" && tableColor != "white"
-			&& tableColor != "green" && tableColor != "red"){
-			cout << "Invalid response. Please respond with \"black,\"  \"brown,\"" 
-				 << " \"white,\" \"green,\" or \"red.\" ";
-			cin >> tableColor;
-		}
-
-		table.setColor(tableColor);
-
-		cout << "How many inches long would you like your table to be? ";
-		cin >> tableLength;
-		table.setLength(tableLength);
-
-		cout << "How many inches wide would you like your table to be? ";
-		cin >> tableWidth;
-		table.setWidth(tableWidth);
-
-		table.setSurfaceArea(tableLength, tableWidth);
-		cout << "The current surface area of the table available is "
-			<< table.getSurfaceArea() << " inches." << endl;
-
-		//string addOrRemove;
-		
-		cout << "Would you like to add an object to the table to see if it fits? (yes/no) ";
-		cin >> response;
-
-		while (response != "yes" && response != "no"){
-			cout << "Invalid response. Please respond with \"yes\" or \"no.\" ";
-			cin >> response;
-		}
-
-		string addOrRemove = "add";
-
-		while (response == "yes"){
-
-			string object;
-			string title;
-			int numberOfPages;
-			string status;
-			int length;
-			int width;
-			int surfaceArea;
-
-			if (addOrRemove == "add"){
-				cout << "What kind of object would you like to add to your table? (book, tissue box, lamp) ";
-				getline(cin, object);
-
-				while (object != "book" && object != "tissue box" && object != "lamp"){
-					cout << "Invalid response. Please respond with \"book,\" \"tissue box,\" or \"lamp.\" ";
-					getline(cin,object);
-				}
-
-				if (object == "book"){
-
-					Book book;
-
-					cout << "What is the title of your book? ";
-					getline(cin, title);
-					book.setTitle(title);
-
-					cout << "How many pages does " << title << " have? ";
-					cin >> numberOfPages;
-					book.setNumberOfPages(numberOfPages);
-
-					cout << "Is the book opened or closed? ";
-					cin >> status;
-					book.setStatus(status);
-
-					while (status != "opened" && status != "closed"){
-						cout << "Invalid response. Please respond with \"opened\" or \"closed.\" ";
-						cin >> status;
-					}
-
-					cout << "What is the length of your " << status << " book in inches? ";
-					cin >> length;
-					book.setLength(length);
-
-					cout << "What is the width of your " << status << " book in inches? ";
-					cin >> width;
-					book.setWidth(width);
-
-					book.setSurfaceArea(length, width);
-
-					table.addBook(book);
-
-					cout << "The current surface area of the table available is "
-						<< table.getSurfaceArea() << " inches." << endl;
-				}
-
-				else if (object == "tissue box"){
-					TissueBox tissueBox;
-
-					cout << "What is the length of your tissue box in inches? ";
-					cin >> length;
-					tissueBox.setLength(length);
-
-					cout << "What is the width of your tissue box in inches? ";
-					cin >> width;
-					tissueBox.setWidth(width);
-
-					tissueBox.setSurfaceArea(length, width);
-
-					table.addTissueBox(tissueBox);
-
-					cout << "The current surface area of the table available is "
-						<< table.getSurfaceArea() << " inches." << endl;
-				}
-
-				else{
-
-					Lamp lamp;
-
-					cout << "What is the length of the base of your lamp in inches? ";
-					cin >> length;
-					lamp.setLength(length);
-
-					cout << "What is the width of the base of your lamp in inches? ";
-					cin >> width;
-					lamp.setWidth(width);
-
-					lamp.setSurfaceArea(length, width);
-
-					table.addLamp(lamp);
-
-					cout << "The current surface area of the table available is "
-						<< table.getSurfaceArea() << " inches." << endl;
-
-				}
-
-				cout << endl << "You currently have " << table.getNumberOfBooks() << " books, "
-					<< table.getNumberOfTissueBoxes() << " tissue boxes, and "
-					<< table.getNumberOfLamps() << " lamps on your table." << endl << endl;
-			}
-
-			else{
-				cout << "You may remove the most recent object added of a certain type. "
-					<< "Would you like to remove the most recently added book, tissue box, or lamp? ";
-				getline(cin, object);
-
-				while (object != "book" && object != "tissue box" && object != "lamp"){
-					cout << "Invalid response. Please respond with \"book,\" \"tissue box,\" or \"lamp.\" ";
-					getline(cin,object);
-				}
-
-				if (object == "book"){
-					table.removeBook();
-					cout << "The current surface area of the table available is "
-						<< table.getSurfaceArea() << " inches." << endl;
-				}
-
-				else if (object == "tissue box"){
-					table.removeTissueBox();
-					cout << "The current surface area of the table available is "
-						<< table.getSurfaceArea() << " inches." << endl;
-
-				}
-
-				else{
-					table.removeLamp();
-					cout << "The current surface area of the table available is "
-						<< table.getSurfaceArea() << " inches." << endl;
-				}
-
-				cout << endl << "You currently have " << table.getNumberOfBooks() << " books, "
-					<< table.getNumberOfTissueBoxes() << " tissue boxes, and "
-					<< table.getNumberOfLamps() << " lamps on your table." << endl << endl;
-			}
-
-			cout << "Would you like to add or remove another object? (yes/no) ";
-			cin >> response;
-
-			while (response != "yes" && response != "no"){
-				cout << "Invalid response. Please respond with \"yes\" or \"no.\" ";
-				cin >> response;
-			}
-
-			if (response == "yes"){
-				cout << "Would you like to add a new object or remove an existing one? (add/remove) ";
-				cin >> addOrRemove;
-
-				while (addOrRemove != "add" && addOrRemove != "remove"){
-					cout << "Invalid response. Please respond with \"add\" or \"remove.\" ";
-					cin >> addOrRemove;
-				}
-			}
-		}
-	
-
-		cout << endl<< "You have chosen an excellent table! Come back again soon!" << endl<<endl;
-	}
-
-	else{
-		cout << endl<< "Come back again soon!" << endl<<endl;
-	}
-
+int main()
+{
+    int mainChoice, choice;
+    Table a;
+    
+    a.input();
+    do {
+        showMenu();
+        do {
+            cout << "\nEnter your choice: ";
+            cin >> mainChoice;
+            
+            if (mainChoice < 1 || mainChoice > 4)
+            {
+                cout << "\nInvalid Choice. Please try again !";
+            }
+        } while (mainChoice < 1 || mainChoice > 4);
+        
+        //choice to add items
+        if (mainChoice == 1) {
+            do {
+                showMenuAddStuff();
+                do {
+                    cout << "\nEnter your choice: ";
+                    cin >> choice;
+                    
+                    if (choice < 1 || choice > 4)
+                    {
+                        cout << "\nInvalid Choice. Please try again !";
+                    }
+                } while (choice < 1 || choice > 4);
+                
+                if (choice == 1) // Book
+                {
+                    Book b;
+                    b.input();
+                    a.addBook(b);
+                    cout << "\nArea of book " << b.getTitle() << " : " << b.getSurfaceArea() << " square inch";
+                }
+                else if (choice == 2) // tissue box
+                {
+                    TissueBox c;
+                    c.input();
+                    a.addTissue(c);
+                    cout << "\nArea of Tissue Box " << " : " << c.getSurfaceArea() << " square inch";
+                }
+                else if (choice == 3) // choice lamp
+                {
+                    Lamp d;
+                    d.input();
+                    a.addLamp(d);
+                    cout << "\nArea of the lamp " << " : " << d.getSurfaceArea() << " square inch";
+                }
+                
+                cout << "\nCurrent Area of Table After Adding the item: " << a.getSurfaceArea() << " square inch";
+                
+            } while (choice != 4);
+        }
+        
+        //choice to remove items
+        else if (mainChoice == 2) {
+            do {
+                showMenuRemoveStuff();
+                do {
+                    cout << "\nEnter your choice: ";
+                    cin >> choice;
+                    
+                    if (choice < 1 || choice > 4)
+                    {
+                        cout << "\nInvalid Choice. Please try again !";
+                    }
+                } while (choice < 1 || choice > 4);
+                
+                switch (choice) {
+                    case 1: a.removeBook(); break;
+                    case 2: a.removeTissueBox(); break;
+                    case 3: a.removeLamp(); break;
+                }
+                
+            } while (choice != 4);
+        }
+        
+        //choice to print item list
+        else if (mainChoice == 3) {
+            a.printListItems();
+        }
+        
+    } while (mainChoice != 4);
+    
+    a.output();
+    
+    system("pause");
 	return 0;
 }
 =======
